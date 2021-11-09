@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  registry:
+    image: verdaccio/verdaccio
+    container_name: "registry"
+    networks:
+      - registry-network
+    environment:
+      - VERDACCIO_PORT=5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./storage:/verdaccio/storage"
+      - "./plugins:/verdaccio/plugins"  
+networks:
+  registry-network:
+    driver: bridge
